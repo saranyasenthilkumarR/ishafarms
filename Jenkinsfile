@@ -4,12 +4,11 @@ pipeline {
   environment {
     AWS_REGION      = 'ap-south-1'
     AWS_ACCOUNT_ID  = '885160773251'
-    ECR_REGISTRY    = "${88516077325}.dkr.ecr.${ap-south-1}.amazonaws.com"
+    ECR_REGISTRY    = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
     S3_FRONTEND     = 'isha-farms-frontend'
-    S3_ARTIFACTS    = 'isha-farms-artifacts'
   }
 
- stages {
+  stages {
 
     stage('Checkout') {
       steps {
@@ -41,31 +40,31 @@ pipeline {
     stage('Push to ECR') {
       steps {
         sh '''
-          aws ecr get-login-password --region $AWS_REGION | \
-          docker login --username AWS --password-stdin $ECR_REGISTRY
+          aws ecr get-login-password --region ap-south-1 | \
+          docker login --username AWS --password-stdin 885160773251.dkr.ecr.ap-south-1.amazonaws.com
 
-          docker tag product-service:latest $ECR_REGISTRY/product-service:latest
-          docker push $ECR_REGISTRY/product-service:latest
+          docker tag product-service:latest 885160773251.dkr.ecr.ap-south-1.amazonaws.com/product-service:latest
+          docker push 885160773251.dkr.ecr.ap-south-1.amazonaws.com/product-service:latest
 
-          docker tag user-service:latest $ECR_REGISTRY/user-service:latest
-          docker push $ECR_REGISTRY/user-service:latest
+          docker tag user-service:latest 885160773251.dkr.ecr.ap-south-1.amazonaws.com/user-service:latest
+          docker push 885160773251.dkr.ecr.ap-south-1.amazonaws.com/user-service:latest
 
-          docker tag order-service:latest $ECR_REGISTRY/order-service:latest
-          docker push $ECR_REGISTRY/order-service:latest
+          docker tag order-service:latest 885160773251.dkr.ecr.ap-south-1.amazonaws.com/order-service:latest
+          docker push 885160773251.dkr.ecr.ap-south-1.amazonaws.com/order-service:latest
         '''
       }
     }
 
     stage('Upload Frontend to S3') {
       steps {
-        sh 'aws s3 sync ./frontend s3://$S3_FRONTEND --delete'
+        sh 'aws s3 sync ./frontend s3://isha-farms-frontend --delete'
       }
     }
 
     stage('Health Check') {
       steps {
         echo 'Build and push complete!'
-        sh 'docker images | grep -E "product|user|order"'
+        sh 'docker images | grep -E "product-service|user-service|order-service"'
       }
     }
 
@@ -73,10 +72,10 @@ pipeline {
 
   post {
     success {
-      echo '✅ Isha Farms pipeline SUCCESS!'
+      echo '✅ Isha Farms deployed successfully!'
     }
     failure {
-      echo '❌ Pipeline FAILED - check logs above!'
+      echo '❌ Pipeline FAILED - check logs!'
     }
   }
 }
