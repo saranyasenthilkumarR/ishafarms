@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isha Farms - Fresh Vegetables & Fruits</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f9f9f9; }
+    header { background: #2d6a2d; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-size: 24px; }
+    nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; }
+    .hero { background: #e8f5e9; padding: 40px 24px; text-align: center; }
+    .hero h2 { font-size: 32px; color: #2d6a2d; margin-bottom: 8px; }
+    .hero p { color: #555; font-size: 16px; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 30px 24px; max-width: 1100px; margin: 0 auto; }
+    .card { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .card .emoji { font-size: 48px; margin-bottom: 12px; }
+    .card h3 { font-size: 16px; margin-bottom: 4px; color: #1a1a1a; }
+    .card .weight { font-size: 12px; color: #888; margin-bottom: 10px; }
+    .card .price { font-size: 18px; font-weight: bold; color: #2d6a2d; margin-bottom: 12px; }
+    .card button { background: #2d6a2d; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+    .card button:hover { background: #1e4d1e; }
+    footer { background: #2d6a2d; color: white; text-align: center; padding: 16px; font-size: 13px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌿 Isha Farms</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Fresh from Our Farm to Your Door</h2>
+    <p>Vegetables and fruits grown on our own farm, harvested daily.</p>
+  </div>
+
+  <div class="products" id="products">
+    <div class="card"><div class="emoji">🍅</div><h3>Tomatoes</h3><div class="weight">500g pack</div><div class="price">₹35</div><button>+ Add to Cart</button></div>
+    <div class="card"><div class="emoji">🥬</div><h3>Spinach</h3><div class="weight">250g bunch</div><div class="price">₹20</div><button>+ Add to Cart</button></div>
+    <div class="card"><div class="emoji">🥕</div><h3>Carrots</h3><div class="weight">1kg bag</div><div class="price">₹40</div><button>+ Add to Cart</button></div>
+    <div class="card"><div class="emoji">🫑</div><h3>Capsicum</h3><div class="weight">3 pcs</div><div class="price">₹45</div><button>+ Add to Cart</button></div>
+    <div class="card"><div class="emoji">🍌</div><h3>Bananas</h3><div class="weight">1 dozen</div><div class="price">₹30</div><button>+ Add to Cart</button></div>
+    <div class="card"><div class="emoji">🧅</div><h3>Onions</h3><div class="weight">1kg bag</div><div class="price">₹25</div><button>+ Add to Cart</button></div>
+  </div>
+
+  <footer>
+    <p>© 2024 Isha Farms · Fresh Vegetables & Fruits · Grown with love 🌱</p>
+  </footer>
+</body>
+</html>
